@@ -13,8 +13,6 @@ graph LR
 
 ## Linear Regression
 
-
-
 ```mermaid
 graph LR
     X --> Y
@@ -22,10 +20,9 @@ graph LR
     Y((Y))
 ```
 
-
 ## My Approach
 
-I restructure the graph such that both the inputs and outputs are generated from some latent space. 
+I restructure the graph such that both the inputs and outputs are generated from some latent space.
 
 ```mermaid
 graph LR
@@ -35,8 +32,6 @@ graph LR
     X((X))
     Y((Y))
 ```
-
-
 
 ## Ideal Characteristics Linear Regression
 
@@ -55,6 +50,7 @@ Y_i & = BZ_i + \epsilon'_i \\
 \epsilon & \sim N(\mu, \Sigma) \\
 \epsilon' & \sim N(\mu', \Sigma') \\
 \end{aligned}
+
 $$
 
 ### Parameters
@@ -75,21 +71,24 @@ M & : \textrm{number of input features} \\
 P & : \textrm{number of output variables} \\
 F & : \textrm{number of latent features}
 \end{aligned}
+
 $$
 
-## Derivation 
+## Derivation
 
 $$
 \begin{aligned}
     \textrm{Objective : } \argmax_{\theta} p(Y|X;\theta)
 \end{aligned}
+
 $$
+
 $$
 \begin{aligned}
     p(Y|X) & = \frac{\int p(Y|Z)p(X|Z)p(Z)dZ}{p(X)} \\
 \end{aligned}
-$$
 
+$$
 
 $$
 \begin{aligned}
@@ -100,6 +99,7 @@ p(X|Z) & = \prod_{t=1}^T (2 \pi)^{-\frac{M}{2}}det(\Sigma_X)^{-\frac{1}{2}}e^{-\
 & \propto \prod_{t=1}^T det(\Sigma_X)^{-\frac{1}{2}}e^{-\frac{1}{2}(X_t-A Z_t)'\Sigma_X^{-1}(X_t - A Z_t)} \\
 & = \prod_{t=1}^T det(\Sigma_X)^{-\frac{1}{2}}e^{-\frac{1}{2}(X_t-A \hat{Z}_t)'\Sigma_X^{-1}(X_t - A \hat{Z}_t) -\frac{1}{2}(Z_t-\hat{Z}_t)'A' \Sigma_X^{-1}A(Z_t - \hat{Z}_t)}\\
 \end{aligned}
+
 $$
 
 $$
@@ -108,6 +108,7 @@ p(Y|Z) & = \prod_{t=1}^T (2 \pi)^{-\frac{M}{2}}det(\Sigma_Y)^{-\frac{1}{2}}e^{-\
 & \propto \prod_{t=1}^T det(\Sigma_Y)^{-\frac{1}{2}}e^{-\frac{1}{2}(Y_t - B Z_t)'\Sigma_Y^{-1}(Y_T - B Z_t)} \\
 & = \prod_{t=1}^T det(\Sigma_Y)^{-\frac{1}{2}}e^{-\frac{1}{2}(Y_t - B \hat{Z}_t)'\Sigma_Y^{-1}(Y_t - B \hat{Z}_t) -\frac{1}{2}(Z_t-\hat{Z}_t)' B' \Sigma_Y^{-1} B (Z_t - \hat{Z}_t)}\\
 \end{aligned}
+
 $$
 
 $$
@@ -119,9 +120,8 @@ p(X) & = \int p(X|Z) p(Z) dZ \\
 \prod_{t=1}^T \Big( e^{-\frac{1}{2}(X_t-A \hat{Z}_t)'\Sigma_X^{-1}(X_t - A \hat{Z}_t)} \Big) \\
 \Sigma' & = (I + A' \Sigma_X^{-1} A)^{-1}
 \end{aligned}
+
 $$
-
-
 
 $$
 \begin{aligned}
@@ -129,6 +129,7 @@ p(Y|Z)p(Z|X)p(Z) & \propto det(\Sigma_Y)^{-\frac{1}{2}}e^{-\frac{1}{2}(Y - B \ha
 det(\Sigma_X)^{-\frac{1}{2}}e^{-\frac{1}{2}(X-A \hat{Z})'\Sigma_X^{-1}(X - A \hat{Z}) -\frac{1}{2}(Z-\hat{Z})'A' \Sigma_X^{-1} A(Z - \hat{Z})}
 e^{-\frac{1}{2} Z'Z} 
 \end{aligned}
+
 $$
 
 $$
@@ -136,7 +137,7 @@ $$
 \int p(Y|Z)p(Z|X)p(Z) dZ & \propto \int 
 e^{-\frac{1}{2} Z'Z}
 \prod_{t=1}^T
-det(\Sigma_X)^{-\frac{1}{2}} det(\Sigma_Y)^{-\frac{1}{2}}    
+det(\Sigma_X)^{-\frac{1}{2}} det(\Sigma_Y)^{-\frac{1}{2}}  
 e^{-\frac{1}{2}(Y - B \hat{Z})'\Sigma_Y^{-1}(Y - B \hat{Z})-\frac{1}{2}(X-A \hat{Z})'\Sigma_X^{-1}(X - A \hat{Z})}
 e^{ -\frac{1}{2}(Z-\hat{Z}_t)' B' \Sigma_Y^{-1} B (Z_t - \hat{Z}_t)-\frac{1}{2}(Z_t-\hat{Z}_t)'A' \Sigma_X^{-1} A(Z_t - \hat{Z}_t)} dZ\\
 & = det(\Sigma_X)^{-\frac{T}{2}} det(\Sigma_Y)^{-\frac{T}{2}} 
@@ -173,6 +174,7 @@ e^{-\frac{1}{2}(Y_t - B \hat{Z}_t)'\Sigma_Y^{-1}(Y_t - B \hat{Z}_t)-\frac{1}{2}(
 \Big) \\ 
 \Sigma & = (I + A'\Sigma_X^{-1}A + B'\Sigma_Y^{-1}B)^{-1} 
 \end{aligned}
+
 $$
 
 $$
@@ -187,6 +189,7 @@ e^{-\frac{1}{2}(Y_t - B \hat{Z}_t)'\Sigma_Y^{-1}(Y_t - B \hat{Z}_t)}
 \Sigma & = (I + A'\Sigma_X^{-1}A + B'\Sigma_Y^{-1}B)^{-1} \\
 \Sigma' & = (I + A' \Sigma_X^{-1} A)^{-1}
 \end{aligned}
+
 $$
 
 $$
@@ -194,6 +197,7 @@ $$
     \log{p(Y|X)} & = \frac{T}{2} \log{|\Sigma_Y^{-1}|}
     - \frac{T}{2}\log{|I + A' \Sigma_X^{-1} A + B' \Sigma_Y^{-1} B|} + \frac{T}{2}\log{|I + A'\Sigma_X^{-1}A|} - \frac{1}{2} \sum_{t=1}^T (Y_t - B \hat{Z}_t)'\Sigma_Y^{-1}(Y_t - B \hat{Z}_t)
 \end{aligned}
+
 $$
 
 [link](https://math.stackexchange.com/questions/2867022/derivation-of-derivative-of-multivariate-gaussian-w-r-t-covariance-matrix)
@@ -208,31 +212,37 @@ $$
 \begin{aligned}
     \frac{\partial p(Y|X)}{\partial B} & = ... + \frac{1}{2} \sum_{t=1}^T  2 \Sigma_Y^{-1} (Y_t - B \hat{Z}_t)B'
 \end{aligned}
+
 $$
 
 $$
 \begin{aligned}
     \frac{\partial p(Y|X)}{\partial A} & = ... + \frac{1}{2} \sum_{t=1}^T  2 \Sigma_Y^{-1} (Y_t - B \hat{Z}_t)B'
 \end{aligned}
+
 $$
 
 $$
 \begin{aligned}
     \frac{\log{p(Y|X)}}{\partial \Sigma_Y^{-1}} & = \frac{T}{2} \Sigma_Y + ... - \frac{1}{2} \sum_{t=1}^T (Y_t - B \hat{Z}_t)(Y_t - B \hat{Z}_t)'
 \end{aligned}
+
 $$
 
 $$
 \begin{aligned}
     \frac{\partial \log{p(Y|X)}}{\partial \hat{Z}} & = 
 \end{aligned}
+
 $$
+
 ## Decomposition Rule
 
 $$
 \begin{aligned}
 (Y-XB)'(Y-XB) & = (Y-X \hat{B})'(Y-X \hat{B}) + (B - \hat{B})'X'X (B - \hat{B})
 \end{aligned}
+
 $$
 
 $$
@@ -241,6 +251,7 @@ X & : \textrm{M x N}\\
 A & : \textrm{M x F}\\
 Z & : \textrm{F x N}\\ 
 \end{aligned}
+
 $$
 
 $$
@@ -262,14 +273,18 @@ p(Z|X) & = \frac{p(X|Z)p(Z)}{p(X)} = \frac{p(X|Z)p(Z)}{\int p(X|Z) p(Z) dZ} \\
 p(Y|X) & = \frac{\int p(Y|Z)p(X|Z)p(Z)dZ}{\int p(X|Z) p(Z) dZ} \\
 p(Z) & \sim N(0, \sigma^2 I)
 \end{aligned}
+
 $$
+
 <!-- 
 p(Y|X) = \int p(Y|Z;B,\mu',\Sigma') p(Z|X) dZ_i
 \end{aligned} -->
-Parameters: 
+
+Parameters:
 
 $$
 A, B, \Sigma, \Sigma', \mu, \mu'
+
 $$
 
 Multivariate Gaussian Distribution
@@ -278,6 +293,7 @@ $$
 \begin{aligned}
 p(x) & = (2 \pi)^{-\frac{k}{2}}det(\Sigma)^{-\frac{1}{2}}e^{-\frac{1}{2}(x-\mu)'\Sigma^{-1}(x-\mu)}
 \end{aligned}
+
 $$
 
 ## Bayesian Regression
@@ -290,6 +306,7 @@ $$
 \begin{aligned}
 y &= X \beta + \epsilon
 \end{aligned}
+
 $$
 
 Assume flat priors
@@ -299,6 +316,7 @@ $$
 p(\beta) & \propto 1 \\
 p(\sigma^2) & \propto \sigma^{-2}
 \end{aligned}
+
 $$
 
 Bayesian prediction
@@ -308,13 +326,15 @@ $$
 y & = X \beta + \epsilon\\
 p(y|X) & = \int p(Y, \beta, \sigma^2|X) d\beta d\sigma^2 \\
 & = \int p(Y|X, \beta, \sigma^2) p(\beta, \sigma^2 | X) d\beta d\sigma^2
-\end{aligned} 
+\end{aligned}
+
 $$
 
 $$
 \begin{aligned}
 p(\sigma^2|y) & \propto \sigma^{-(N+2-k)} e^{-\frac{1}{2 \sigma^2}(y - X \hat{\beta})'(y - X\hat{\beta})}
 \end{aligned}
+
 $$
 
 ## Singular Value Decomposition
@@ -329,20 +349,9 @@ U & : \textrm{M x M} \\
 \Sigma & : \textrm{M x N} \\
 V^* & : \textrm{N x N} \\
 \end{aligned}
-$$
 
+$$
 
 ### Estimating Covariance matrix
 
 [link](https://xavierbourretsicotte.github.io/MLE_Multivariate_Gaussian.html)
-
-
-
-
-
-
-
-
-
-
-
